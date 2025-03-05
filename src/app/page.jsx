@@ -7,6 +7,7 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import TechStack from '@/components/TechStack';
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 // Dynamically import the Hero component with no SSR
 const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
@@ -103,7 +104,7 @@ export default function Home() {
         <Navbar />
         
         {/* Hero Section */}
-        <div className="relative h-screen w-full">
+        <div id="home" className="relative h-screen w-full">
           <Hero />
 
           {/* Content Container */}
@@ -208,16 +209,27 @@ export default function Home() {
       </div>
 
       {/* About Section */}
-      <About />
+      <div id="about">
+        <About />
+      </div>
 
       {/* Projects Section */}
-      <Projects />
+      <div id="projects">
+        <Projects />
+      </div>
 
       {/* Skills Section */}
-      <TechStack />
+      <div id="skills">
+        <TechStack />
+      </div>
 
       {/* Contact Section */}
-      <Contact />
+      <div id="contact">
+        <Contact />
+      </div>
+
+      {/* Footer Section */}
+      <Footer />
     </main>
   );
 }

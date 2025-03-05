@@ -16,8 +16,8 @@ function Skull({ isMobile, onLoad }) {
           child.castShadow = true;
           child.receiveShadow = true;
           if (child.material) {
-            child.material.roughness = 0.6;
-            child.material.metalness = 0.4;
+            child.material.roughness = 0.4;
+            child.material.metalness = 0.6;
             child.material.needsUpdate = true;
           }
         }
@@ -104,16 +104,18 @@ export default function Hero() {
           <Stars 
             radius={300} 
             depth={50} 
-            count={isMobile ? 3500 : 6000} 
-            factor={4} 
-            saturation={0} 
-            fade 
-            speed={0.3} 
+            count={isMobile ? 4500 : 8000}
+            factor={12}
+            saturation={1}
+            fade={false}
+            speed={0.5}
+            size={2.5}
+            color="#ffffff"
           />
 
           <directionalLight 
             position={[5, 5, 5]} 
-            intensity={1.2} 
+            intensity={1.5}
             color="#ffffff"
             castShadow
             shadow-mapSize={[1024, 1024]}
@@ -122,7 +124,7 @@ export default function Hero() {
             position={[-5, 5, 0]}
             angle={0.4}
             penumbra={0.5}
-            intensity={1.5}
+            intensity={2}
             color="#ffffff"
             castShadow
             shadow-bias={-0.0001}
@@ -130,16 +132,16 @@ export default function Hero() {
           />
           <pointLight 
             position={[0, 0, 5]} 
-            intensity={0.8} 
+            intensity={1.2}
             color="#ffffff" 
             distance={50}
             decay={2}
           />
-          <ambientLight intensity={0.2} />
+          <ambientLight intensity={0.4} />
 
           <Skull isMobile={isMobile} onLoad={handleModelLoad} />
 
-          <fog attach="fog" args={['#000000', isMobile ? 8 : 10, isMobile ? 16 : 20]} />
+          <fog attach="fog" args={['#000000', isMobile ? 10 : 12, isMobile ? 20 : 25]} />
         </Suspense>
       </Canvas>
     </div>

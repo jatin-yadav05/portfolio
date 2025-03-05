@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiThreedotjs, SiTailwindcss, SiPython, SiRust, SiSolidity, SiWebgl, SiNodedotjs, SiMongodb } from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiThreedotjs, SiTailwindcss, SiPython, SiFigma, SiWebgl, SiNodedotjs, SiMongodb, SiCplusplus } from 'react-icons/si';
 
 const technologies = [
   {
@@ -33,12 +33,6 @@ const technologies = [
     category: '3D'
   },
   {
-    name: 'WebGL',
-    icon: SiWebgl,
-    color: '#990000',
-    category: '3D'
-  },
-  {
     name: 'Node.js',
     icon: SiNodedotjs,
     color: '#339933',
@@ -57,16 +51,16 @@ const technologies = [
     category: 'Backend'
   },
   {
-    name: 'Rust',
-    icon: SiRust,
-    color: '#000000',
+    name: 'C++',
+    icon: SiCplusplus,
+    color: '#00599C',
     category: 'Systems'
   },
   {
-    name: 'Solidity',
-    icon: SiSolidity,
-    color: '#363636',
-    category: 'Blockchain'
+    name: 'Figma',
+    icon: SiFigma,
+    color: '#F24E1E',
+    category: 'Design'
   },
   {
     name: 'Tailwind CSS',

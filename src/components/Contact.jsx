@@ -154,17 +154,12 @@ const Contact = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Section Header with 3D Effect */}
+        {/* Section Header */}
         <motion.div
-          style={{ 
-            perspective: 1000,
-            rotateX,
-            rotateY
-          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 transform-gpu"
+          className="text-center mb-16"
         >
           <motion.h2 
             className="text-neutral-300 text-sm tracking-[0.5em] uppercase mb-3"
@@ -305,39 +300,17 @@ const Contact = () => {
             variants={illustrationVariants}
             initial="hidden"
             animate="visible"
-            className="relative hidden lg:block group perspective-1000"
+            className="relative hidden lg:block group perspective-1000 h-[500px]"
             style={{ 
               transform: isHovered ? 'rotateX(5deg) rotateY(5deg)' : 'none',
               transition: 'transform 0.3s ease'
             }}
           >
-            {/* 3D Rotating Circles */}
-            <div className="absolute inset-0 flex items-center justify-center transform-gpu">
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    rotateZ: [0, 360],
-                    rotateX: [0, 30, 0],
-                    rotateY: [0, 30, 0],
-                  }}
-                  transition={{
-                    duration: 20 + i * 5,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className={`absolute w-${96 - i * 24} h-${96 - i * 24} rounded-full border-2
-                           border-neutral-700/50 group-hover:border-neutral-600/50
-                           transition-all duration-500`}
-                />
-              ))}
-            </div>
-
-            {/* Floating Elements */}
+            {/* Envelope Animation */}
             <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-32"
               animate={{
                 y: [0, -10, 0],
-                rotateX: [0, 10, 0],
                 rotateY: [0, 10, 0],
               }}
               transition={{
@@ -345,44 +318,119 @@ const Contact = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             >
-              <div className="w-32 h-32 bg-neutral-800/20 rounded-xl backdrop-blur-sm 
-                           border-2 border-neutral-700/30 rotate-45
-                           group-hover:border-neutral-600/50 group-hover:scale-110
-                           transition-all duration-500" />
-            </motion.div>
-
-            {/* Particles */}
-            {[...Array(12)].map((_, i) => (
+              {/* Envelope Body */}
+              <div className="absolute inset-0 bg-neutral-800/40 backdrop-blur-sm rounded-lg border-2 border-neutral-700/50 
+                           group-hover:border-neutral-500/50 group-hover:bg-neutral-700/40 transition-all duration-500" />
+              {/* Envelope Flap */}
               <motion.div
-                key={i}
-                animate={{
-                  y: [0, -20, 0],
-                  x: [0, i % 2 === 0 ? 10 : -10, 0],
-                  opacity: [0.5, 1, 0.5],
-                  scale: [1, 1.2, 1],
-                }}
+                className="absolute top-0 left-0 w-full h-1/2 origin-bottom"
+                initial={{ rotateX: 0 }}
+                animate={{ rotateX: [0, -20, 0] }}
                 transition={{
-                  duration: 3 + i * 0.2,
-                  delay: i * 0.1,
+                  duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute w-2 h-2 bg-neutral-700/40
-                         rounded-full transition-all duration-500 group-hover:scale-150
-                         group-hover:bg-neutral-600/60"
+              >
+                <div className="absolute bottom-0 left-0 w-full h-full bg-neutral-800/40 
+                             transform-gpu origin-bottom rounded-t-lg border-t-2 border-x-2 border-neutral-600/50" />
+              </motion.div>
+              {/* Mail Icon */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg className="w-12 h-12 text-neutral-500 group-hover:text-neutral-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" 
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </motion.div>
+            </motion.div>
+
+            {/* Connecting Lines */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute left-1/2 top-1/2"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 2 + i * 0.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.2,
+                }}
                 style={{
-                  left: `${10 + i * 7}%`,
-                  top: `${20 + (i * 5) % 40}%`,
+                  width: '2px',
+                  height: '80px',
+                  background: 'linear-gradient(to bottom, transparent, rgba(163,163,163,0.15), transparent)',
+                  transform: `rotate(${i * 45}deg) translateY(-100px)`,
                 }}
               />
             ))}
 
+            {/* Floating Communication Icons */}
+            {[
+              { icon: 'message', delay: 0 },
+              { icon: 'phone', delay: 0.3 },
+              { icon: 'video', delay: 0.6 },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="absolute"
+                animate={{
+                  y: [0, -20, 0],
+                  x: [0, i % 2 === 0 ? 20 : -20, 0],
+                  rotate: [0, 10, 0],
+                  opacity: [0.4, 0.7, 0.4],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: item.delay,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  left: `${40 + i * 20}%`,
+                  top: `${30 + (i * 15)}%`,
+                }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-neutral-800/40 backdrop-blur-sm 
+                             border border-neutral-700/50 flex items-center justify-center
+                             group-hover:border-neutral-500/50 group-hover:bg-neutral-700/40 transition-all duration-500">
+                  {item.icon === 'message' && (
+                    <svg className="w-5 h-5 text-neutral-500 group-hover:text-neutral-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" 
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                  )}
+                  {item.icon === 'phone' && (
+                    <svg className="w-5 h-5 text-neutral-500 group-hover:text-neutral-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" 
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  )}
+                  {item.icon === 'video' && (
+                    <svg className="w-5 h-5 text-neutral-500 group-hover:text-neutral-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" 
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+
             {/* Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-800/0 via-neutral-700/0 to-neutral-800/0
-                         group-hover:from-neutral-700/10 group-hover:via-neutral-600/10 group-hover:to-neutral-700/10
-                         transition-all duration-700 blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neutral-800/0 via-neutral-700/5 to-neutral-800/0
+                         group-hover:via-neutral-600/10 transition-all duration-700 blur-3xl pointer-events-none" />
           </motion.div>
         </div>
 

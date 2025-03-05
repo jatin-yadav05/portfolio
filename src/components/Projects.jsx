@@ -166,7 +166,7 @@ const Projects = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-[#0a0a0a] py-20 px-4 md:px-6 lg:px-8"
+      className="relative bg-[#0a0a0a] py-20 px-4 md:px-6 lg:px-8"
     >
       {/* Animated Background */}
       <div className="absolute inset-0">
