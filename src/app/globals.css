@@ -1,26 +1,226 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  overflow-x: hidden;
+}
+
+/* Performance Optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mystical Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: translateY(-20px) translateZ(0);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes floatDelayed {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px) translateZ(0);
+    opacity: 0.8;
+  }
+}
+
+@keyframes floatMoreDelayed {
+  0% {
+    transform: translateY(20px) translateZ(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5),
+                 0 0 40px rgba(255, 215, 0, 0.3),
+                 0 0 60px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(255, 215, 0, 0.8),
+                 0 0 60px rgba(255, 215, 0, 0.5),
+                 0 0 80px rgba(255, 215, 0, 0.3);
+  }
+}
+
+.animate-float {
+  animation: float 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translateZ(0);
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 0.5s;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translateZ(0);
+}
+
+.animate-float-more-delayed {
+  animation: floatMoreDelayed 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translateZ(0);
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Loading Animation */
+@keyframes progress {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.loading-bar {
+  animation: progress 2s ease-in-out;
+  will-change: width;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translateZ(0);
+}
+
+/* Mystical Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background: #737373;
+  color: #000;
+}
+
+/* Custom Font Classes */
+.font-mystical {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.1em;
+}
+
+/* Glass Effect */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+/* Maintain the dark theme */
+body {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Grid Animation */
+@keyframes grid {
+  0% {
+    transform: perspective(1000px) rotateX(60deg) translateY(0);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(60deg) translateY(-1px);
+  }
+}
+
+/* Scale Animation */
+@keyframes scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+/* Project Card Hover Effect */
+.project-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Screen Transitions */
+.initial-loader {
+  transition: opacity 0.5s ease-out;
+}
+
+/* Loading Progress Bar Animation */
+@keyframes progress-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-progress {
+  animation: progress-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth Page Transition */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
