@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiThreedotjs, SiTailwindcss, SiPython, SiFigma, SiWebgl, SiNodedotjs, SiMongodb, SiCplusplus } from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiThreedotjs, SiTailwindcss, SiPython, SiFigma, SiNodedotjs, SiMongodb, SiCplusplus } from 'react-icons/si';
 
 const technologies = [
   {
