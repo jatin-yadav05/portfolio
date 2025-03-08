@@ -94,7 +94,7 @@ const About = () => {
                   }
                   gridSize={32}
                   pixelColor='#ffffff'
-                  animationStepDuration={0.8}
+                  animationStepDuration={0.6}
                 />
               </motion.div>
             </div>
