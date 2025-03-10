@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ImagePreloader from './ImagePreloader';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const cardRef = useRef(null);
+  const imageRef = useRef(null);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -52,6 +55,37 @@ const ProjectCard = ({ project, index }) => {
     }
   };
 
+  // Preload image
+  useEffect(() => {
+    const img = new Image();
+    img.src = project.image;
+    img.onload = () => {
+      setImageLoaded(true);
+    };
+  }, [project.image]);
+
+  // Simplified toggle function for both click and hover
+  const toggleDetails = () => {
+    setIsHovered(prev => !prev);
+  };
+
+  // Handle clicks outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setIsHovered(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
   return (
     <motion.div
       ref={cardRef}
@@ -61,20 +95,31 @@ const ProjectCard = ({ project, index }) => {
       className="relative overflow-hidden rounded-xl bg-neutral-900/40 backdrop-blur-sm
                  border border-neutral-800/50 h-[300px] transform transition-all duration-300
                  hover:border-neutral-700/50 group cursor-pointer"
+      onClick={toggleDetails}
       onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onHoverEnd={() => !('ontouchstart' in window) && setIsHovered(false)}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${project.title}`}
     >
-      {/* Project Image */}
+      {/* Project Image with loading state */}
       <motion.div 
         className="absolute inset-0 w-full h-full"
         variants={imageVariants}
         animate={isHovered ? "hover" : "initial"}
       >
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-neutral-800 animate-pulse" />
+        )}
         <img
+          ref={imageRef}
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           loading="lazy"
+          onLoad={() => setImageLoaded(true)}
         />
       </motion.div>
 
@@ -124,8 +169,10 @@ const ProjectCard = ({ project, index }) => {
                   className="px-4 py-2 text-sm text-neutral-200 bg-neutral-800/50 
                            rounded-lg border border-neutral-700/30 hover:bg-neutral-700/50 
                            transition-colors duration-200 backdrop-blur-sm flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   <span>View Project</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,8 +186,10 @@ const ProjectCard = ({ project, index }) => {
                   rel="noopener noreferrer"
                   className="p-2 text-neutral-400 hover:text-neutral-200 
                            transition-colors duration-200 backdrop-blur-sm"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" clipRule="evenodd" 
@@ -199,11 +248,17 @@ const Projects = () => {
     }
   ];
 
+  // Get all project images for preloading
+  const projectImages = projects.map(project => project.image);
+
   return (
     <section
       ref={containerRef}
       className="relative bg-[#0a0a0a] py-20 px-4 md:px-6 lg:px-8"
     >
+      {/* Preload all project images */}
+      <ImagePreloader images={projectImages} />
+
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-40" />
