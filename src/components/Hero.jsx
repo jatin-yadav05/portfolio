@@ -50,7 +50,7 @@ function Skull({ isMobile, onLoad }) {
       <primitive 
         object={scene}
         scale={isMobile ? 2.8 : 5}
-        position={[0, isMobile ? -1.5 : -1.5, isMobile ? 1 : 0]}
+        position={[0, isMobile ? -1.5 : -1.5, isMobile ? 0 : 0]}
         rotation={[0, Math.PI * 1.5, 0]}
         dispose={null}
       />
