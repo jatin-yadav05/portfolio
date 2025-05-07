@@ -1,6 +1,6 @@
 "use client"
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState, useCallback, useMemo } from 'react';
+import { Suspense, useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { OrbitControls, useGLTF, SpotLight, useAnimations, Environment, Stars } from '@react-three/drei';
 // import { KernelSize } from 'postprocessing';
 
@@ -61,9 +61,69 @@ function Skull({ isMobile, onLoad }) {
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
+  const canvasRef = useRef(null);
 
   const handleMediaQuery = useCallback((event) => {
     setIsMobile(event.matches);
+  }, []);
+
+  // Handle visibility change
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Pause animations and rendering when not visible
+        if (canvasRef.current) {
+          canvasRef.current.style.visibility = 'hidden';
+        }
+      } else {
+        // Resume when visible again
+        if (canvasRef.current) {
+          canvasRef.current.style.visibility = 'visible';
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  // Handle scroll performance
+  useEffect(() => {
+    let rafId;
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      if (rafId) {
+        return;
+      }
+
+      rafId = requestAnimationFrame(() => {
+        const currentScrollTop = window.pageYOffset;
+        const isScrollingUp = currentScrollTop < lastScrollTop;
+        
+        if (canvasRef.current) {
+          // Only update canvas when scrolling up to the hero section
+          if (isScrollingUp && currentScrollTop < window.innerHeight) {
+            canvasRef.current.style.visibility = 'visible';
+          } else if (!isScrollingUp && currentScrollTop > window.innerHeight) {
+            canvasRef.current.style.visibility = 'hidden';
+          }
+        }
+
+        lastScrollTop = currentScrollTop;
+        rafId = null;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -101,21 +161,27 @@ export default function Hero() {
   }), [isMobile]);
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen" ref={canvasRef}>
       <Canvas
         frameloop='demand'
         shadows="basic"
         dpr={[1, Math.min(2, window.devicePixelRatio)]}
         performance={{ min: 0.5 }}
         camera={cameraSettings}
-        gl={{ 
+        gl={{
           preserveDrawingBuffer: true,
-          antialias: false, // Disable antialiasing on mobile
+          antialias: false,
           powerPreference: "high-performance",
           alpha: true,
           stencil: false,
           depth: true,
-          logarithmicDepthBuffer: true
+          logarithmicDepthBuffer: true,
+          failIfMajorPerformanceCaveat: true, // Prevent running on devices that can't handle it well
+          powerPreference: "high-performance"
+        }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#000000', 0); // Set clear color to black with 0 alpha
+          gl.clearDepth(); // Clear depth buffer
         }}
       >
         <Suspense fallback={null}>
@@ -127,6 +193,7 @@ export default function Hero() {
             autoRotateSpeed={isMobile ? 1 : 1.8}
             enableDamping={true}
             dampingFactor={0.05}
+            makeDefault // Ensure proper cleanup
           />
 
           <Environment preset="night" />
@@ -136,8 +203,8 @@ export default function Hero() {
             position={[5, 5, 5]} 
             intensity={1.5}
             color="#ffffff"
-            castShadow={!isMobile} // Disable shadows on mobile
-            shadow-mapSize={[512, 512]} // Reduce shadow map size
+            castShadow={!isMobile}
+            shadow-mapSize={[512, 512]}
           />
           <SpotLight
             position={[-5, 5, 0]}

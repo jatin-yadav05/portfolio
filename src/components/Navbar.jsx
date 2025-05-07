@@ -67,14 +67,17 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo/Brand */}
-            <div className="flex-shrink-0">
-              <a 
+            <div className="flex-shrink-0  pt-1">
+              {/* <a 
                 href="#home"
                 onClick={(e) => handleNavClick(e, 'home')}
                 className="text-neutral-100 text-2xl md:text-3xl tracking-[0.2em] hover:text-neutral-200 transition-colors"
               >
                 JY
-              </a>
+              </a> */}
+              <Link href="#home">
+                <img src="/logo/j-logo.png" alt="Logo" className="w-20 h-20" />
+              </Link>
             </div>
 
             {/* Navigation Links - Desktop */}

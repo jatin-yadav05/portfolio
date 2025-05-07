@@ -92,9 +92,9 @@ const About = () => {
                       <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>{isTouchDevice ? "Touch me!" : "Hover me!"}</p>
                     </div>
                   }
-                  gridSize={32}
+                  gridSize={42}
                   pixelColor='#ffffff'
-                  animationStepDuration={0.6}
+                  animationStepDuration={0.5}
                 />
               </motion.div>
             </div>
@@ -205,13 +205,6 @@ const About = () => {
             </motion.div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Mouse Follow Effect */}
-      <div className="hidden lg:block">
-        <div className="fixed top-0 left-0 w-3 h-3 bg-neutral-100 rounded-full opacity-20 pointer-events-none mix-blend-difference"
-          style={{ transform: 'translate(-50%, -50%)' }}
-        />
       </div>
     </section>
   );
