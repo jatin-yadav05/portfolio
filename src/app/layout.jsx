@@ -10,6 +10,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo/j-logo.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/logo/j-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -253,4 +255,3 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
-
