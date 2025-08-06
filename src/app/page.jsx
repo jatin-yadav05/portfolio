@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 
 const Navbar = dynamic(() => import('@/components/Navbar'), { ssr: false });
-const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
 const About = dynamic(() => import('@/components/About'), { ssr: false });
 const Projects = dynamic(() => import('@/components/Projects'), { ssr: false });
 const TechStack = dynamic(() => import('@/components/TechStack'), { ssr: false });
@@ -81,82 +80,9 @@ export default function Home() {
       </div>
     );
   };
-  useEffect(() => {
-    let mounted = true;
-
-    const preloadAssets = async () => {
-      try {
-        // Preload images in parallel
-        const imageUrls = [
-          'https://placehold.co/2000x1200/111111/EEEEEE?text=Project+1',
-          'https://placehold.co/2000x1200/111111/EEEEEE?text=Project+2',
-          'https://placehold.co/2000x1200/111111/EEEEEE?text=Project+3'
-        ];
-        const imagePromises = imageUrls.map(url => {
-          return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = () => reject(`Failed to load image: ${url}`);
-            img.src = url;
-          });
-        });
-
-
-
-        // Wait for all assets with timeout
-        const timeout = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Loading timed out')), 15000)
-        );
-
-        await Promise.race([
-          Promise.all([...imagePromises]),
-          timeout
-        ]);
-
-        // Ensure smooth transition
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        if (mounted) {
-          // Remove the initial loader after a short delay
-          const initialLoader = document.getElementById('initial-loader');
-          if (initialLoader) {
-            initialLoader.style.opacity = '0';
-            setTimeout(() => {
-              if (initialLoader.parentNode) {
-                initialLoader.parentNode.removeChild(initialLoader);
-              }
-            }, 500);
-          }
-        }
-
-      } catch (error) {
-        console.error('Loading error:', error);
-        // Even on error, we should remove the loader after a timeout
-        if (mounted) {
-          setTimeout(() => {
-            const initialLoader = document.getElementById('initial-loader');
-            if (initialLoader) {
-              initialLoader.style.opacity = '0';
-              setTimeout(() => {
-                if (initialLoader.parentNode) {
-                  initialLoader.parentNode.removeChild(initialLoader);
-                }
-              }, 500);
-            }
-          }, 1000);
-        }
-      }
-    };
-
-    preloadAssets();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   return (
-    <main className="relative w-full overflow-x-hidden bg-[#0a0a0a]">
+    <main className="relative w-full bg-[#0a0a0a]">
       <div className="relative min-h-screen">
         {/* Subtle background effect */}
         <div className="absolute inset-0">

@@ -16,9 +16,6 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
         
-        {/* Preload critical assets */}
-        <link rel="preload" href="/grid.png" as="image" />
-        <link rel="preload" href="/skull_salazar_downloadable/scene.gltf" as="fetch" crossOrigin="anonymous" />
         
         {/* Meta tags for performance */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
