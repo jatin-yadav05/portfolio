@@ -167,7 +167,7 @@ export default function Home() {
         <Navbar />
 
         {/* Hero Section */}
-        <div id="home" className="relative h-dvh w-full">
+        <div id="home" className="relative h-screen w-full">
           {/* <Hero /> */}
           <HeroBackground />
 
