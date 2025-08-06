@@ -37,6 +37,13 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neutral-500 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neutral-500 to-transparent" />
+        <div
+          className="absolute inset-0 opacity-10 bg-repeat"
+          style={{
+            backgroundImage: 'url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png")',
+            backgroundSize: '149.76px'
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

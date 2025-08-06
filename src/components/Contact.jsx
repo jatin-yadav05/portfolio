@@ -152,6 +152,13 @@ const Contact = () => {
           }}
         />
       </div>
+      <div
+          className="absolute inset-0 opacity-10 bg-repeat"
+          style={{
+            backgroundImage: 'url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png")',
+            backgroundSize: '149.76px'
+          }}
+        />
 
       <div className="max-w-7xl mx-auto relative">
         {/* Section Header */}
