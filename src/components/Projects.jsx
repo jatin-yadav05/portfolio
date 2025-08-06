@@ -259,13 +259,6 @@ const Projects = () => {
       {/* Preload all project images */}
       <ImagePreloader images={projectImages} />
 
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-40" />
-        <div className="absolute inset-0 opacity-[0.05]">
-          <div className="h-full w-full bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:128px_128px] [transform:perspective(1000px)_rotateX(60deg)] origin-[center_top]" />
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto relative">
         {/* Section Header */}
