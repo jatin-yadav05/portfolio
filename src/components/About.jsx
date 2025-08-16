@@ -30,7 +30,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-[#0a0a0a] py-20 "
+      className="relative min-h-screen bg-[#0a0a0a] py-20 overflow-x-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
@@ -200,7 +200,7 @@ const About = () => {
               <a
                 href="/resume/Jatin Yadav Resume.pdf"
                 download
-                className="group relative inline-block px-8 py-3 bg-transparent overflow-hidden"
+                className="group relative inline-block px-8 py-3 bg-transparent overflow-x-hidden"
               >
                 <span className="relative z-10 text-neutral-300 group-hover:text-neutral-900 text-sm tracking-[0.3em] uppercase transition-colors duration-300">
                   Download Resume

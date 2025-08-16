@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      <nav className={`fixed w-[100vw] z-50 transition-all duration-300 ${
         scrolled || mobileMenuOpen ? 'bg-black/90 backdrop-blur-sm' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

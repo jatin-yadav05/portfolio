@@ -195,7 +195,7 @@ export default function Home() {
                   onClick={(event) => {
                     window.open('https://cal.com/jatin-yadav05/15min', '_blank');
                   }}
-                  className="w-full cursor-pointer flex justify-between items-center sm:w-auto px-12 py-4 bg-neutral-100 text-black hover:bg-neutral-300 transition-colors duration-300 text-xs tracking-[0.3em] uppercase"
+                  className="w-full cursor-pointer flex justify-center items-center sm:w-auto px-12 py-4 bg-neutral-100 text-black hover:bg-neutral-300 transition-colors duration-300 text-xs tracking-[0.3em] uppercase"
                 >
                   Book a Call 
                 </button>
