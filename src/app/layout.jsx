@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 
         {/* Open Graph */}
         <meta property="og:title" content="Jatin Yadav - Portfolio" />
-        <meta property="og:description" content="A mystical journey through digital craftsmanship" />
+        <meta property="og:description" content="Helping you with both design and development" />
         <meta property="og:image" content="https://jatinyadav.in/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
