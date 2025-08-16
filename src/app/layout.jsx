@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
 
         <title>Jatin Yadav - Portfolio</title>
         <meta name="description" content="A mystical journey through digital craftsmanship" />
+        <meta name="keywords" content="Jatin Yadav, Jatin, web developer portfolio, frontend developer, ReactJS developer, JavaScript programmer, HTML CSS projects, Tailwind CSS portfolio, UI/UX designer, Figma designer, responsive web design, modern web applications, personal website, software engineer portfolio, open source contributions, programming projects, web development projects, professional portfolio, freelance web developer, tech portfolio, coding portfolio, JavaScript web apps, interactive web design, creative portfolio, developer showcase, project showcase, programming skills, web app developer, React projects, portfolio website" />
 
         {/* Open Graph */}
         <meta property="og:title" content="Jatin Yadav - Portfolio" />
