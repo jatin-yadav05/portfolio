@@ -78,7 +78,7 @@ const About = () => {
                 style={{ y }}
               >
                 {/* Add your image or 3D element here */}
-                {/* <PixelTransition
+                <PixelTransition
                   secondContent={
                     <Image
                       src="/myImage/profilepic-2.png"
@@ -102,7 +102,7 @@ const About = () => {
                   gridSize={42}
                   pixelColor='#ffffff'
                   animationStepDuration={0.5}
-                /> */}
+                />
               </motion.div>
             </div>
           </motion.div>
