@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Jatin Yadav - Portfolio" />
         <meta name="twitter:description" content="A mystical journey through digital craftsmanship" />
-        <meta name="twitter:image" content="https://jatinyadav.in/og-image-twitter.png" />
+        <meta name="twitter:image" content="https://res.cloudinary.com/dpqhqrs7k/image/upload/v1755351334/og-image-twitter_izzun7.png" />
 
         {/* Meta tags for performance */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
