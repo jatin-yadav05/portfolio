@@ -30,7 +30,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-[#0a0a0a] py-20 overflow-x-hidden"
+      className="relative min-h-screen bg-[#0a0a0a] py-20 "
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
@@ -74,7 +74,7 @@ const About = () => {
             <div className="aspect-square relative">
               <div className="absolute inset-0" />
               <motion.div
-                className="absolute inset-0 opacity-30"
+                className="absolute inset-0 opacity-60"
                 style={{ y }}
               >
                 {/* Add your image or 3D element here */}
@@ -117,7 +117,7 @@ const About = () => {
           >
             <div className="space-y-6">
               <h3 className="text-neutral-100 text-2xl tracking-wider">
-                Full Stack Developer & Digital Craftsman
+                Full Stack Developer & UI/UX Designer
               </h3>
               <p className="text-neutral-400 leading-relaxed">
                 With a passion for creating seamless digital experiences, I combine technical expertise with creative problem-solving. My approach focuses on building scalable, user-centric solutions that make a lasting impact.
