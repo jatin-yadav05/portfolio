@@ -15,25 +15,32 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
-        
-        {/* Open Graph and Social Media Meta Tags */}
+
+        <title>Jatin Yadav - Portfolio</title>
+        <meta name="description" content="A mystical journey through digital craftsmanship" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="Jatin Yadav - Portfolio" />
         <meta property="og:description" content="A mystical journey through digital craftsmanship" />
-        <meta property="og:image" content="/Og-Image.png" />
+        <meta property="og:image" content="https://jatinyadav.in/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:url" content="https://jatinyadav.in" />
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Jatin Yadav - Portfolio" />
         <meta name="twitter:description" content="A mystical journey through digital craftsmanship" />
-        <meta name="twitter:image" content="/Og-Image.png" />
+        <meta name="twitter:image" content="https://jatinyadav.in/og-image.png" />
+
         {/* Meta tags for performance */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="theme-color" content="#0a0a0a" />
-        
+
         {/* Initial loading styles to prevent flash */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           .initial-loader {
             position: fixed;
             top: 0;
@@ -197,7 +204,8 @@ export default function RootLayout({ children }) {
           }
         `}} />
 
-        <script dangerouslySetInnerHTML={{ __html: `
+        <script dangerouslySetInnerHTML={{
+          __html: `
           window.addEventListener('load', function() {
             const loader = document.getElementById('initial-loader');
             const minLoadTime = 3000; // Reduced minimum loading time for better UX
